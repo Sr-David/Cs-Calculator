@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculadora"
         mc:Ignorable="d"
-        Title="MainWindow" Height="441" Width="400" Background="White" MinWidth="400" MinHeight="810">
+        Title="Calculator" Height="441" Width="400" Background="White" MinWidth="400" MinHeight="600" KeyDown="Window_KeyDown">
+
+
     <Grid Name="GeneralGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="171*"/>
+        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100" MinHeight="200" MaxHeight="400"/>
@@ -16,10 +22,11 @@
         </Grid.RowDefinitions>
 
         <!-- Contenido para la primera fila -->
-        <TextBlock Text="Primera fila" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock x:Name="MainText" Text="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,113,10,0" Height="77" Width="400" VerticalAlignment="Top" TextAlignment="Right" FontSize="36" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="SecondaryText" Text="" Margin="-10,0,10,0" Height="auto" VerticalAlignment="Center" TextAlignment="Right" FontSize="25" Grid.ColumnSpan="2"/>
 
         <!-- Contenido para la segunda fila -->
-        <Grid x:Name="GridNumbers" Grid.Row="1">
+        <Grid x:Name="GridNumbers" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -37,23 +44,39 @@
 
 
             <!--BOTONES NUMERICOS-->
-            <Button Grid.Row="0" Grid.Column="0" Content="1" Click="Button_Click"/>
-            <Button Grid.Row="0" Grid.Column="1" Content="2" Click="Button_Click"/>
-            <Button Grid.Row="0" Grid.Column="2" Content="3" Click="Button_Click"/>
+            <Button x:Name="Button1" Grid.Row="0" Grid.Column="0" Content="1" Click="Button_Click"/>
+            <Button x:Name="Button2" Grid.Row="0" Grid.Column="1" Content="2" Click="Button_Click"/>
+            <Button x:Name="Button3" Grid.Row="0" Grid.Column="2" Content="3" Click="Button_Click"/>
 
-            <Button Grid.Row="1" Grid.Column="0" Content="4" Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="1" Content="5" Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="2" Content="6" Click="Button_Click"/>
+            <Button x:Name="Button4" Grid.Row="1" Grid.Column="0" Content="4" Click="Button_Click"/>
+            <Button x:Name="Button5" Grid.Row="1" Grid.Column="1" Content="5" Click="Button_Click"/>
+            <Button x:Name="Button6" Grid.Row="1" Grid.Column="2" Content="6" Click="Button_Click"/>
 
-            <Button Grid.Row="2" Grid.Column="0" Content="7" Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="1" Content="8" Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="2" Content="9" Click="Button_Click"/>
+            <Button x:Name="Button7" Grid.Row="2" Grid.Column="0" Content="7" Click="Button_Click"/>
+            <Button x:Name="Button8" Grid.Row="2" Grid.Column="1" Content="8" Click="Button_Click"/>
+            <Button x:Name="Button9" Grid.Row="2" Grid.Column="2" Content="9" Click="Button_Click"/>
 
-            <Button Grid.Row="3" Grid.Column="1" Content="0" Click="Button_Click"/>
+            <Button x:Name="Button0" Grid.Row="3" Grid.Column="1" Content="0" Click="Button_Click"/>
 
 
+
+            <!--BOTONES OPERACIONES-->
+
+            <Button x:Name="restar" Grid.Row="0" Grid.Column="3" Content="➖" />
+
+            <Button x:Name="sumar" Grid.Row="1" Grid.Column="3" Content="➕" />
+
+            <Button x:Name="dividir" Grid.Row="2" Grid.Column="3" Content="➗" />
+
+            <Button x:Name="multiply" Grid.Row="3" Grid.Column="3" Content="✖️" />
+
+
+            <Button x:Name="comma" Grid.Row="3" Grid.Column="0" Content="," />
+
+            <Button x:Name="equal" Grid.Row="3" Grid.Column="2" Content="="/>
 
         </Grid>
+
 
     </Grid>
 </Window>
