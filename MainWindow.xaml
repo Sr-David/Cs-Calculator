@@ -62,18 +62,18 @@
 
             <!--BOTONES OPERACIONES-->
 
-            <Button x:Name="restar" Grid.Row="0" Grid.Column="3" Content="➖" />
+            <Button x:Name="restar" Grid.Row="0" Grid.Column="3" Content="-" Click="operacion" />
 
-            <Button x:Name="sumar" Grid.Row="1" Grid.Column="3" Content="➕" />
+            <Button x:Name="sumar" Grid.Row="1" Grid.Column="3" Content="+" Click="operacion" />
 
-            <Button x:Name="dividir" Grid.Row="2" Grid.Column="3" Content="➗" />
+            <Button x:Name="dividir" Grid.Row="2" Grid.Column="3" Content="÷" Click="operacion" />
 
-            <Button x:Name="multiply" Grid.Row="3" Grid.Column="3" Content="✖️" />
+            <Button x:Name="multiply" Grid.Row="3" Grid.Column="3" Content="x" Click="operacion" />
 
 
             <Button x:Name="comma" Grid.Row="3" Grid.Column="0" Content="," />
 
-            <Button x:Name="equal" Grid.Row="3" Grid.Column="2" Content="="/>
+            <Button x:Name="equal" Grid.Row="3" Grid.Column="2" Content="=" Click="Igual_Click"/>
 
         </Grid>
 

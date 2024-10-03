@@ -20,6 +20,13 @@ namespace Calculadora
     /// </summary>
     public partial class MainWindow : Window
     {
+    
+        bool tocaOperar = false;
+        double resultado = 0;
+        double num1 = 0;
+        double num2 = 0;
+        string tipoOperacion = "";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,82 +35,38 @@ namespace Calculadora
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button numeroBoton = sender as Button;
-            Console.WriteLine(numeroBoton.Content.ToString());
-            if(MainText.Text == "0")
+            string contenidoBoton = numeroBoton.Content.ToString();
+
+
+            // Manejar el texto primncipal
+            if (MainText.Text == "0")
             {
-                MainText.Text = numeroBoton.Content.ToString();
+                MainText.Text = contenidoBoton;
+                
             }
             else
             {
-                if(MainText.Text.Length < 18)
+                if (MainText.Text.Length < 18)
                 {
-
-                    MainText.Text += numeroBoton.Content.ToString();
+                    MainText.Text += contenidoBoton;
                 }
             }
-
         }
-
-
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            // Verificar si la tecla presionada es el número 1
-
-
-            if (e.Key == Key.D1 || e.Key == Key.NumPad1)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9)
             {
-                // Llamar al manejador de eventos del botón 1
-                Button_Click(Button1, null);
+                int numero = e.Key - Key.D0;
+                Button_Click(GetButtonByNumber(numero), null);
             }
-            else if (e.Key == Key.D2 || e.Key == Key.NumPad2)
+            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
             {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button2, null);
-            }
-            else if (e.Key == Key.D3 || e.Key == Key.NumPad3)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button3, null);
-            }
-            else if (e.Key == Key.D4 || e.Key == Key.NumPad4)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button4, null);
-            }
-            else if (e.Key == Key.D5 || e.Key == Key.NumPad5)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button5, null);
-            }
-            else if (e.Key == Key.D6 || e.Key == Key.NumPad6)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button6, null);
-            }
-            else if (e.Key == Key.D7 || e.Key == Key.NumPad7)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button7, null);
-            }
-            else if (e.Key == Key.D8 || e.Key == Key.NumPad8)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button8, null);
-            }
-            else if (e.Key == Key.D9 || e.Key == Key.NumPad9)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button9, null);
-            }
-            else if (e.Key == Key.D0 || e.Key == Key.NumPad0)
-            {
-                // Llamar al manejador de eventos del botón 2
-                Button_Click(Button0, null);
+                int numero = e.Key - Key.NumPad0;
+                Button_Click(GetButtonByNumber(numero), null);
             }
             else if (e.Key == Key.Back)
             {
-                Console.WriteLine("Borrando");
                 if (MainText.Text.Length > 1)
                 {
                     MainText.Text = MainText.Text.Substring(0, MainText.Text.Length - 1);
@@ -112,14 +75,99 @@ namespace Calculadora
                 {
                     MainText.Text = "0";
                 }
-
-
             }
-            // Puedes agregar más verificaciones para otras teclas y botones
         }
 
+        private Button GetButtonByNumber(int numero)
+        {
+            switch (numero)
+            {
+                case 0:
+                    return Button0;
+                case 1:
+                    return Button1;
+                case 2:
+                    return Button2;
+                case 3:
+                    return Button3;
+                case 4:
+                    return Button4;
+                case 5:
+                    return Button5;
+                case 6:
+                    return Button6;
+                case 7:
+                    return Button7;
+                case 8:
+                    return Button8;
+                case 9:
+                    return Button9;
+                default:
+                    return null;
+            }
+        }
+
+        private void operacion(object sender, RoutedEventArgs e)
+        {
+
+            tipoOperacion = (sender as Button).Content.ToString();
+            if(tocaOperar == false)
+            {
+                num1 = double.Parse(MainText.Text);
+                tocaOperar = true;
+            }
+            else
+            {
+                num2 = double.Parse(MainText.Text);
+                CalcularResultado();
+            }
+            SecondaryText.Text += MainText.Text + " " + tipoOperacion;
+
+            MainText.Text = "0";
 
 
+
+
+        }
+
+        private void CalcularResultado()
+        {
+
+            switch (tipoOperacion)
+            {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+                case "-":
+                    resultado = num1 - num2;
+                    break;
+                case "x":
+                    resultado = num1 * num2;
+                    break;
+                case "÷":
+                    resultado = num1 / num2;
+                    break;
+            }
+
+            num1 = resultado;
+            num2 = 0;
+            Console.WriteLine(resultado);
+
+
+        }
+
+        private void Igual_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            num2 = double.Parse(MainText.Text);
+            CalcularResultado();
+            MainText.Text = resultado.ToString();
+            SecondaryText.Text = "";
+            tocaOperar = false;
+
+
+        }
     }
 }
 
