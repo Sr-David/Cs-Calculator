@@ -48,6 +48,8 @@ namespace Calculadora
             {
                 if (MainText.Text.Length < 18)
                 {
+
+                    
                     MainText.Text += contenidoBoton;
                 }
             }
