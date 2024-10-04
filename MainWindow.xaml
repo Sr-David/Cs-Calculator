@@ -71,7 +71,7 @@
             <Button x:Name="multiply" Grid.Row="3" Grid.Column="3" Content="x" Click="operacion" />
 
 
-            <Button x:Name="comma" Grid.Row="3" Grid.Column="0" Content="," />
+            <Button x:Name="comma" Grid.Row="3" Grid.Column="0" Content="," Click="Button_Click" />
 
             <Button x:Name="equal" Grid.Row="3" Grid.Column="2" Content="=" Click="Igual_Click"/>
 
