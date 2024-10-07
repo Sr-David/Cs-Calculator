@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculadora"
         mc:Ignorable="d"
-        Title="Calculator" Height="441" Width="400" Background="White" MinWidth="400" MinHeight="600" KeyDown="Window_KeyDown">
+        Title="Calculator" Height="441" Width="400" MinWidth="400" MinHeight="600" KeyDown="Window_KeyDown">
+    <Window.Background>
+        <SolidColorBrush Color="#FF362170" Opacity="1"/>
+    </Window.Background>
 
 
     <Grid Name="GeneralGrid">
@@ -22,8 +25,14 @@
         </Grid.RowDefinitions>
 
         <!-- Contenido para la primera fila -->
-        <TextBlock x:Name="MainText" Text="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,113,10,0" Height="77" Width="400" VerticalAlignment="Top" TextAlignment="Right" FontSize="36" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="SecondaryText" Text="" Margin="-10,0,10,0" Height="auto" VerticalAlignment="Center" TextAlignment="Right" FontSize="25" Grid.ColumnSpan="2"/>
+
+        <Grid x:Name="pantalla" Grid.ColumnSpan="2" Margin="29,0,29,0" Height="200" Grid.Row="0" Background="#FF09021F">
+            <TextBlock x:Name="MainText" Text="0" Grid.Row="0" Margin="0,113,0,0" Height="77" VerticalAlignment="Top" TextAlignment="Right" FontSize="36" Foreground="#FF54C2BB"/>
+            <TextBlock x:Name="SecondaryText" Text="" Height="auto" VerticalAlignment="Top" TextAlignment="Right" FontSize="25" Margin="0,80,0,0" Foreground="#FF54C2BB"/>
+
+        </Grid>
+
+
 
         <!-- Contenido para la segunda fila -->
         <Grid x:Name="GridNumbers" Grid.Row="1" Grid.ColumnSpan="2">
@@ -62,7 +71,7 @@
 
             <!--BOTONES OPERACIONES-->
 
-            <Button x:Name="restar" Grid.Row="0" Grid.Column="3" Content="-" Click="operacion" />
+            <Button x:Name="restar" Grid.Row="0" Grid.Column="3" Content="-" Click="operacion" Background="#FFDDDDDD" />
 
             <Button x:Name="sumar" Grid.Row="1" Grid.Column="3" Content="+" Click="operacion" />
 
@@ -76,6 +85,7 @@
             <Button x:Name="equal" Grid.Row="3" Grid.Column="2" Content="=" Click="Igual_Click"/>
 
         </Grid>
+
 
 
     </Grid>

@@ -219,27 +219,25 @@ namespace Calculadora
 
         private void operacion(object sender, RoutedEventArgs e)
         {
+            Button operacionBoton = sender as Button;
+            string nuevaOperacion = operacionBoton.Content.ToString();
 
-        
-
-            tipoOperacion = (sender as Button).Content.ToString();
-            
-            if(tocaOperar == false)
-            {
-                num1 = double.Parse(MainText.Text);
-                tocaOperar = true;
-            }
-            else
+            if (tocaOperar)
             {
                 num2 = double.Parse(MainText.Text);
                 CalcularResultado();
+                MainText.Text = resultado.ToString();
+                SecondaryText.Text = resultado + " " + nuevaOperacion + " ";
             }
-            SecondaryText.Text += MainText.Text + " " + tipoOperacion + " ";
+            else
+            {
+                num1 = double.Parse(MainText.Text);
+                tocaOperar = true;
+                SecondaryText.Text = num1 + " " + nuevaOperacion + " ";
+            }
 
+            tipoOperacion = nuevaOperacion;
             MainText.Text = "0";
-
-
-
 
         }
 
